@@ -1,6 +1,8 @@
 using AbstractAlgebra
 using LinearAlgebra
 
+#TO DO!!! Usar una linea menos y normalizar
+
 R,x = polynomial_ring(QQ, :x)
 
 # Functions to generate random cameras in P_d,delta
@@ -43,7 +45,7 @@ function lineCurve(d, delta, l)
     r = [1,0,-x]
     u = cross(r,P[1]*(L[1:3]+cross(L[4:6],P[2])))
     coeffs1 = [coeff(u[1],i) for i = 1:(d+2*delta+1)]
-    coeffs2 = [coeff(u[2],i) for i = 0:(d+2*delta+1)]
+    coeffs2 = [coeff(u[2],i) for i = 1:(d+2*delta+1)]
     coeffs = vcat(coeffs1,coeffs2)
     if l >= 2
     for i in 2:l
@@ -51,7 +53,7 @@ function lineCurve(d, delta, l)
         r = [1,0,-x]
         u = cross(r,P[1]*(L[1:3]+cross(L[4:6],P[2])))
         coeffs1 = [coeff(u[1],i) for i = 1:(d+2*delta+1)]
-        coeffs2 = [coeff(u[2],i) for i = 0:(d+2*delta+1)]
+        coeffs2 = [coeff(u[2],i) for i = 1:(d+2*delta+1)]
         coeffs = vcat(coeffs,coeffs1,coeffs2)
     end
     end
@@ -59,7 +61,7 @@ function lineCurve(d, delta, l)
 end
 
 function isLinearSpanFull(d, delta, l)
-    M = matrix([lineCurve(d, delta, l) for i in 1:l*(2*d+4*delta+3)])
+    M = matrix([lineCurve(d, delta, l) for i in 1:l*(2*d+4*delta+2)])
     if LinearAlgebra.det_bareiss(BigInt.(M)) != 0
         return true
     else 
