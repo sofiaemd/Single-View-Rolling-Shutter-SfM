@@ -1,8 +1,6 @@
 using AbstractAlgebra
 using LinearAlgebra
 
-#TO DO!!! Usar una linea menos y normalizar
-
 R,x = polynomial_ring(QQ, :x)
 
 # Functions to generate random cameras in P_d,delta
@@ -38,8 +36,7 @@ function randomPlucker()
 end
 
 function lineCurve(d, delta, l)
-    # Function that has the camera parameters d and delta and the number of lines and outputs
-    # the coefficients of the image curves of l random lines through a random camera in P_d,delta
+    # Function that outputs the coefficients of the image curves of l random lines through a random camera in P_d,delta
     P = [cayleyTransform(A(delta)), C(d)]
     L = randomPlucker()
     r = [1,0,-x]
@@ -61,6 +58,8 @@ function lineCurve(d, delta, l)
 end
 
 function isLinearSpanFull(d, delta, l)
+    # Function that created the matrix of imagen through the picture taking map and 
+    # verifies the determinant doesn't vanish 
     M = matrix([lineCurve(d, delta, l) for i in 1:l*(2*d+4*delta+2)])
     if LinearAlgebra.det_bareiss(BigInt.(M)) != 0
         return true
@@ -69,10 +68,14 @@ function isLinearSpanFull(d, delta, l)
     end
 end
 
+
+#Checking the cases in proposition 2
 for d in 0:5
     for delta in 0:5
         for l in 1:6
-            print(isLinearSpanFull(d,delta,l))
+            if isLinearSpanFull(d,delta,l)
+            println("For d = ",d,", delta = ",delta," and ",l," lines, the linear span of the image of the picture-taking map is (H_", 2*delta+d+1,")^",l)
+            end
         end
     end
 end
