@@ -130,11 +130,9 @@ function checkProp10(d,delta)
     print("\n\n\n")
 end
 
-checkProp10(1,2)
 
-# for d in 1:5
-#     for delta in 2:3
-#         checkProp10(d,delta)
-#     end
-# end
+# First case takes less than 15 minutes, second case takes around 4 hours and third case about a day
+checkProp10(1,2)
+checkProp10(2,2)
+checkProp10(3,2)
 
