@@ -75,8 +75,8 @@ end
 
 
 
-for d in 1:5
-    for delta in 1:3
+function checkprop8(d,delta)
+
 
 print("***************  ","Case d = ",d," and delta = ", delta,"  ***************", "\n")
 
@@ -154,4 +154,7 @@ end
 
 print("\n\n\n")
 end
-end
+
+checkprop8(1,1)
+checkprop8(1,2)
+checkprop8(2,1)
