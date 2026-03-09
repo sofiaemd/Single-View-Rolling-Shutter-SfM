@@ -22,15 +22,6 @@ y2b = random(FF)
 x2c = random(FF)
 y2c = random(FF)
 
--*
-THE FOLLOWING CODE IS TAKEN FROM PLMP (https://github.com/timduff35/PLMP/blob/master/CODE/common.m2)
--- produces gates for "small" determinants"
-det2 = M -> M_(0,0)*M_(1,1)-M_(1,0)*M_(0,1)
-det3 = M -> M_(0,0)*det2(M_{1,2}^{1,2})-M_(0,1)*det2(M_{0,2}^{1,2})+M_(0,2)*det2(M_{0,1}^{1,2})
-
-END OF THE PLMP CODE
-*-
-
 rotRS = a -> matrix{
         {1+a_(0,0)*a_(0,0)-a_(1,0)*a_(1,0)-a_(2,0)*a_(2,0), 2*a_(0,0)*a_(1,0)-2*a_(2,0), 2*a_(1,0)+2*a_(0,0)*a_(2,0)},
         {2*a_(2,0)+2*a_(0,0)*a_(1,0), 1-a_(0,0)*a_(0,0)+a_(1,0)*a_(1,0)-a_(2,0)*a_(2,0), 2*a_(1,0)*a_(2,0)-2*a_(0,0)},
